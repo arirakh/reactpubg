@@ -9,6 +9,14 @@ dotenv.config({
 
 const app = express()
 
+// Dev logging
+if (process.env.NODE_ENV === 'development') {
+  app.use(morgan('dev'))
+}
+
+// Player route
+app.use('/api/v1/player/steam', require('./routes/player'))
+
 const port = process.env.PORT || 8000;
 
 app.listen(port, () => {
