@@ -9,38 +9,47 @@ router.get('/:playerName', async (req, res) => {
       'Accept': 'application/vnd.api+json',
     }
 
+    // GET PLAYER ID
     const playerName = req.params.playerName;
-    const url = `${process.env.TRACKER_API_URL}/players?filter[playerNames]=${playerName}`;
-    const response = await fetch(url, {
+    const urlPlayerName = `${process.env.TRACKER_API_URL}/players?filter[playerNames]=${playerName}`;
+    const responsePlayerName = await fetch(urlPlayerName, {
       headers
     })
 
-    const data = await response.json();
+    const dataPlayerName = await responsePlayerName.json();
 
-    if (data.errors && data.errors.length) {
+    if (dataPlayerName.errors && dataPlayerName.errors.length) {
       res.status(404).json({
         message: 'Player not found'
       })
     } else {
       try {
-        const playerID = data.data[0].id;
+        let playerInfo = {
+          id: dataPlayerName.data[0].id,
+          name: dataPlayerName.data[0].attributes.name
+        };
 
-        const url = `${process.env.TRACKER_API_URL}/players/${playerID}`;
-        const response = await fetch(url, {
+        // GET PLAYER STATS
+        const playerID = playerInfo.id;
+        const urlPlayerStats = `${process.env.TRACKER_API_URL}/players/${playerID}/seasons/lifetime`;
+        const responsePlayerStats = await fetch(urlPlayerStats, {
           headers
         })
 
-        const player = await response.json();
+        const dataPlayerStats = await responsePlayerStats.json();
+        const playerStats = dataPlayerStats.data.attributes.gameModeStats;
 
-        res.json(player)
+        res.json({ playerInfo, playerStats })
       } catch (err) {
         res.status(500).json({
+          code: '02',
           message: 'Server error'
         })
       }
     }
   } catch (err) {
     res.status(500).json({
+      code: '01',
       message: 'Server error'
     })
   }

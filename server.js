@@ -17,9 +17,6 @@ if (process.env.NODE_ENV === 'development') {
 // Player route
 app.use('/api/v1/player/steam', require('./routes/player'))
 
-// Player stats route
-app.use('/api/v1/stats/steam', require('./routes/stats'))
-
 const port = process.env.PORT || 8000;
 
 app.listen(port, () => {
