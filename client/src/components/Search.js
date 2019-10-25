@@ -1,10 +1,11 @@
-import React, { Component } from 'react'
+import React, { Component } from 'react';
 
 class Search extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      playerName: ''
+      playerName: '',
+      errorInput: false
     };
 
     this.inputPlayerName = this.inputPlayerName.bind(this);
@@ -17,7 +18,12 @@ class Search extends Component {
 
   onSearch = (e) => {
     e.preventDefault();
-    console.log(this.state.playerName)
+    if (this.state.playerName === '') {
+      this.setState({ errorInput: true });
+    } else {
+      this.setState({ errorInput: false });
+      this.props.history.push(`/player/${this.state.playerName}`);
+    }
   }
 
   render() {
@@ -25,8 +31,9 @@ class Search extends Component {
       <div className="mt-4 p-4 border border-light rounded">
         <h2 className="text-white text-center"><strong>PUBG Player Tracker</strong></h2>
         <form className="m-3">
-          <input type="text" className="form-control mb-3" placeholder="Enter PUBG Player Name" onChange={this.inputPlayerName} />
-          <button type="submit" className="btn btn-warning btn-block" onClick={this.onSearch}>Search</button>
+          <input type="text" className="form-control" placeholder="Enter PUBG Player Name" onChange={this.inputPlayerName} />
+          {this.state.errorInput ? (<p className="text-danger mt-1">Player name must not empty</p>) : null}
+          <button type="submit" className="btn btn-warning btn-block mt-3" onClick={this.onSearch}>Search</button>
         </form>
       </div>
     )

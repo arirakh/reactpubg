@@ -1,6 +1,7 @@
 const express = require('express');
 const morgan = require('morgan');
 const dotenv = require('dotenv');
+const cors = require('cors');
 
 // LOAD ENV
 dotenv.config({
@@ -14,6 +15,8 @@ if (process.env.NODE_ENV === 'development') {
   app.use(morgan('dev'))
 }
 
+// CORS Middleware
+app.use(cors());
 // Player route
 app.use('/api/v1/player/steam', require('./routes/player'))
 
