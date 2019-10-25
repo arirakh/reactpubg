@@ -3,6 +3,7 @@ import { Link } from 'react-router-dom';
 
 class Player extends Component {
   render() {
+    const { params } = this.props.match;
     return (
       <div className="row mt-4">
         <div className="col-md-8 px-0">
@@ -14,7 +15,7 @@ class Player extends Component {
         </div>
 
         <div className="col-md-12 p-4 border border-white text-center mb-3">
-          <h2 className="text-warning"><strong>Player Name: </strong></h2>
+          <h2 className="text-white"><strong>Player Name: <span className="text-warning"></span></strong></h2>
           <h6 className="text-white"><strong>Platform: steam</strong></h6>
         </div>
 
