@@ -8,7 +8,8 @@ class Player extends Component {
     super(props);
     this.state = {
       isLoading: false,
-      data: null
+      data: null,
+      error: null,
     }
   }
 
@@ -26,7 +27,7 @@ class Player extends Component {
     } catch (err) {
       this.setState({
         isLoading: false,
-        data: err
+        error: err
       });
     }
   }
@@ -36,25 +37,25 @@ class Player extends Component {
     const playerData = this.state.data;
 
     if (this.state.isLoading) {
-      titleStats = <div className="spinner-border text-warning" role="status">
+      titleStats = <div className="spinner-border text-danger" role="status">
         <span className="sr-only">Loading...</span>
       </div>;
 
       dataStats = <div className="row text-center">
         <div className="col-md-4 p-0">
-          <div className="spinner-border text-warning" role="status">
+          <div className="spinner-border text-danger" role="status">
             <span className="sr-only">Loading...</span>
           </div>
         </div>
 
         <div className="col-md-4 p-0">
-          <div className="spinner-border text-warning" role="status">
+          <div className="spinner-border text-danger" role="status">
             <span className="sr-only">Loading...</span>
           </div>
         </div>
 
         <div className="col-md-4 p-0">
-          <div className="spinner-border text-warning" role="status">
+          <div className="spinner-border text-danger" role="status">
             <span className="sr-only">Loading...</span>
           </div>
         </div>
@@ -76,6 +77,9 @@ class Player extends Component {
             <Stats statsName="Squad" squad={playerData.playerStats.squad} squadFpp={playerData.playerStats['squad-fpp']} />
           </div>
         </div>;
+      } else {
+        titleStats = <div><h2 className="text-danger"><strong>Player Not Found</strong></h2></div>;
+        dataStats = null;
       }
     }
 
