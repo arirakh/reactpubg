@@ -32,17 +32,50 @@ class Player extends Component {
   }
 
   render() {
-    let titleStats;
+    let titleStats, dataStats;
     const playerData = this.state.data;
 
     if (this.state.isLoading) {
-      titleStats = <div className="spinner-border text-danger" role="status">
+      titleStats = <div className="spinner-border text-warning" role="status">
         <span className="sr-only">Loading...</span>
-      </div>
+      </div>;
+
+      dataStats = <div className="row text-center">
+        <div className="col-md-4 p-0">
+          <div className="spinner-border text-warning" role="status">
+            <span className="sr-only">Loading...</span>
+          </div>
+        </div>
+
+        <div className="col-md-4 p-0">
+          <div className="spinner-border text-warning" role="status">
+            <span className="sr-only">Loading...</span>
+          </div>
+        </div>
+
+        <div className="col-md-4 p-0">
+          <div className="spinner-border text-warning" role="status">
+            <span className="sr-only">Loading...</span>
+          </div>
+        </div>
+      </div>;
     } else {
       if (playerData) {
-        console.log(playerData)
-        titleStats = <div><h2 className="text-white"><strong>Player Name: <span className="text-warning">{playerData.playerInfo.name}</span></strong></h2> <h6 className="text-white"><strong>Platform: steam</strong></h6></div>
+        titleStats = <div><h2 className="text-white"><strong>Player Name: <span className="text-warning">{playerData.playerInfo.name}</span></strong></h2> <h6 className="text-white"><strong>Platform: steam</strong></h6></div>;
+
+        dataStats = <div className="row">
+          <div className="col-md-4 p-0">
+            <Stats statsName="Solo" solo={playerData.playerStats.solo} soloFpp={playerData.playerStats['solo-fpp']} />
+          </div>
+
+          <div className="col-md-4 p-0">
+            <Stats statsName="Duo" duo={playerData.playerStats.duo} duoFpp={playerData.playerStats['duo-fpp']} />
+          </div>
+
+          <div className="col-md-4 p-0">
+            <Stats statsName="Squad" squad={playerData.playerStats.squad} squadFpp={playerData.playerStats['squad-fpp']} />
+          </div>
+        </div>;
       }
     }
 
@@ -62,21 +95,7 @@ class Player extends Component {
           </div>
         </div>
 
-        {playerData ? (
-          <div className="row">
-            <div className="col-md-4 p-0">
-              <Stats statsName="Solo" solo={playerData.playerStats.solo} soloFpp={playerData.playerStats['solo-fpp']} />
-            </div>
-
-            <div className="col-md-4 p-0">
-              <Stats statsName="Duo" duo={playerData.playerStats.duo} duoFpp={playerData.playerStats['duo-fpp']} />
-            </div>
-
-            <div className="col-md-4 p-0">
-              <Stats statsName="Squad" squad={playerData.playerStats.squad} squadFpp={playerData.playerStats['squad-fpp']} />
-            </div>
-          </div>
-        ) : null}
+        {dataStats}
       </div>
     )
   }
