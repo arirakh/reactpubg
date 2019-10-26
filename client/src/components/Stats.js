@@ -118,7 +118,7 @@ class Stats extends Component {
 
     return (
       <div>
-        <div className="card border border-white mx-1">
+        <div className="card border border-white mx-1 mb-3">
           <div className={"card-header text-white " + bgColor} >
             <div className="row">
               <div className="col-6">

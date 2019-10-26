@@ -1,20 +1,14 @@
-.App {
-  min-height: 100vh;
+.cover {
   background: url('./assets/pubg-bg.jpg');
-  background-position: center center;
-  background-repeat: no-repeat;
+  background-position: center-center;
   background-attachment: fixed;
   background-size: cover;
-  background-color: #464646;
-}
-
-.cover {
-  background: rgba(0, 0, 0, 0.4);
   position: absolute;
   top: 0;
   left: 0;
   width: 100%;
   min-height: 100vh;
+  z-index: -1;
 }
 
 .logoSize {

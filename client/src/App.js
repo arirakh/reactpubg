@@ -9,7 +9,7 @@ class App extends Component {
   render() {
     return (
       <BrowserRouter>
-        <div className="App">
+        <div>
           <div className="cover">
             <div className="col-md-8 col-10 mx-auto mt-3 p-0">
               <Header />

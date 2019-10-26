@@ -31,7 +31,7 @@ class Search extends Component {
       <div className="mt-4 p-4 border border-light rounded">
         <h2 className="text-white text-center"><strong>PUBG Player Tracker</strong></h2>
         <form className="m-3">
-          <input type="text" className="form-control" placeholder="Enter PUBG Player Name" onChange={this.inputPlayerName} />
+          <input type="text" className="form-control" placeholder="Enter PUBG Player Name (example: Lumi, Lurn, shroud)" onChange={this.inputPlayerName} />
           {this.state.errorInput ? (<p className="text-danger mt-1">Player name must not empty</p>) : null}
           <button type="submit" className="btn btn-warning btn-block mt-3" onClick={this.onSearch}>Search</button>
         </form>

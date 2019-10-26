@@ -65,15 +65,15 @@ class Player extends Component {
         titleStats = <div><h2 className="text-white"><strong>Player Name: <span className="text-warning">{playerData.playerInfo.name}</span></strong></h2> <h6 className="text-white"><strong>Platform: steam</strong></h6></div>;
 
         dataStats = <div className="row">
-          <div className="col-md-4 p-0">
+          <div className="col-lg-4 p-0">
             <Stats statsName="Solo" solo={playerData.playerStats.solo} soloFpp={playerData.playerStats['solo-fpp']} />
           </div>
 
-          <div className="col-md-4 p-0">
+          <div className="col-lg-4 p-0">
             <Stats statsName="Duo" duo={playerData.playerStats.duo} duoFpp={playerData.playerStats['duo-fpp']} />
           </div>
 
-          <div className="col-md-4 p-0">
+          <div className="col-lg-4 p-0">
             <Stats statsName="Squad" squad={playerData.playerStats.squad} squadFpp={playerData.playerStats['squad-fpp']} />
           </div>
         </div>;
@@ -86,15 +86,15 @@ class Player extends Component {
     return (
       <div>
         <div className="row mt-4">
-          <div className="col-md-8 px-0">
+          <div className="col-sm-8 px-0">
             <h2 className="text-white"><strong>PUBG Player Stats</strong></h2>
           </div>
 
-          <div className="col-md-4 px-0 text-right">
+          <div className="col-sm-4 px-0 text-right">
             <Link className="btn btn-warning" to="/">Back</Link>
           </div>
 
-          <div className="col-md-12 p-4 border border-white text-center mb-3">
+          <div className="col-md-12 p-4 border border-white rounded text-center my-3">
             {titleStats}
           </div>
         </div>
